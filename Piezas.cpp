@@ -112,7 +112,7 @@ Piece Piezas::gameState()
 
   //Check for Largest streak in Columns
   for(int column = 0; column < BOARD_COLS; column++){
-    int bestStreak = 1, currentStreak = 1;
+    int currentStreak = 1;
     Piece currentPiece = board[column][0];
     for(int row = 1; row < BOARD_ROWS; row++){
       if(currentPiece == board[column][row]){
@@ -147,8 +147,8 @@ Piece Piezas::gameState()
   /////////////////////////////////////////////
   //Check for Largest streak in Rows
   for(int row = 0; row < BOARD_ROWS; row++){
-    int bestStreak = 1, currentStreak = 1;
-    Piece currentPiece = board[column][0];
+    int currentStreak = 1;
+    Piece currentPiece = board[0][row];
     for(int column = 1; column < BOARD_COLS; column++){
       if(currentPiece == board[column][row]){
         currentStreak++;
