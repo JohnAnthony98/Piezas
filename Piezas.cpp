@@ -35,9 +35,11 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
-  board.resize(BOARD_COLS);
-  for(int i = 0; i < BOARD_COLS; i++){
-    board[i].resize(BOARD_ROWS, Blank);
+  turn = X;
+  for(int column = 0; column < BOARD_COLS; column++){
+    for(int row = 0; row < BOARD_ROWS; row++){
+      board[column][row] = Blank;
+    }
   }
 }
 
@@ -95,6 +97,35 @@ Piece Piezas::pieceAt(int row, int column)
  * line, it is a tie.
 **/
 Piece Piezas::gameState()
-{
+{/*
+  for(int column = 0; column < BOARD_COLS; column++){
+    for(int row = 0; row < BOARD_ROWS; row++){
+      if(board[column][row] == Blank){
+        //There is a blank space, game is not over
+        return Invalid;
+      }
+    }
+  }
+
+  //Look for a winner
+  int largestX = 0, largestO = 0;
+  for(int column; column < BOARD_COLS; column++){
+    int streak = 0;
+    int Piece = board[column][]
+    for(int row; row < BOARD_ROWS; row++){
+
+
+
+
+    }
+  }
+
+  if(largestX > largestO){
+    return X;
+  }
+  else if(largestX < largestO){
+    return O;
+  }*/
+  //it is a tie
   return Blank;
 }
