@@ -100,3 +100,112 @@ TEST(PiezasTest, dropPieceInFullColumn)
   Piece placed = game.dropPiece(1);
   ASSERT_TRUE(placed == Blank);
 }
+
+TEST(PiezasTest, pieceAtNegativeColumn){
+  Piezas game;
+
+  Piece move = game.pieceAt(2, -1);
+  ASSERT_TRUE(move == Invalid);
+}
+
+TEST(PiezasTest, pieceAtColumnTooLarge){
+  Piezas game;
+
+  Piece move = game.pieceAt(2, 9);
+  ASSERT_TRUE(move == Invalid);
+}
+
+TEST(PiezasTest, pieceAtNegativeRow){
+  Piezas game;
+
+  Piece move = game.pieceAt(-1, 3);
+  ASSERT_TRUE(move == Invalid);
+}
+
+TEST(PiezasTest, pieceAtRowTooLarge){
+  Piezas game;
+
+  Piece move = game.pieceAt(9, 2);
+  ASSERT_TRUE(move == Invalid);
+}
+
+TEST(PiezasTest, pieceAtBlank){
+  Piezas game;
+
+  game.dropPiece(0);
+  Piece move = game.pieceAt(1, 0);
+  ASSERT_TRUE(move == Blank);
+}
+
+TEST(PiezasTest, pieceAtFirstMove){
+  Piezas game;
+
+  game.dropPiece(2);
+  Piece move = game.pieceAt(0, 2);
+  ASSERT_TRUE(move == X);
+}
+
+TEST(PiezasTest, pieceAtSecondMove){
+  Piezas game;
+
+  game.dropPiece(2);
+  game.dropPiece(3);
+  Piece move = game.pieceAt(0, 3);
+  ASSERT_TRUE(move == O);
+}
+
+TEST(PiezasTest, pieceAtX){
+  Piezas game;
+
+  game.dropPiece(2);
+  game.dropPiece(2);
+  game.dropPiece(1);
+  game.dropPiece(2);
+  game.dropPiece(0);
+  game.dropPiece(3);
+  game.dropPiece(0);
+  Piece move = game.pieceAt(1, 0);
+  ASSERT_TRUE(move == X);
+}
+
+TEST(PiezasTest, pieceAtXWithInvalidMove){
+  Piezas game;
+
+  game.dropPiece(2);
+  game.dropPiece(2);
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(3);
+  Piece move = game.pieceAt(0, 3);
+  ASSERT_TRUE(move == X);
+}
+
+TEST(PiezasTest, pieceAtO){
+  Piezas game;
+
+  game.dropPiece(2);
+  game.dropPiece(1);
+  game.dropPiece(2);
+  game.dropPiece(0);
+  game.dropPiece(3);
+  game.dropPiece(0);
+  Piece move = game.pieceAt(1, 0);
+  ASSERT_TRUE(move == O);
+}
+
+TEST(PiezasTest, pieceAtOWithInvalidMove){
+  Piezas game;
+
+  game.dropPiece(2);
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(3);
+  Piece move = game.pieceAt(0, 3);
+  ASSERT_TRUE(move == O);
+}
