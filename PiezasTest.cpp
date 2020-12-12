@@ -19,6 +19,33 @@ TEST(PiezasTest, sanityCheck)
 	ASSERT_TRUE(true);
 }
 
+TEST(PiezasTest, X_Starts)
+{
+	Piezas game;
+
+  Piece placed = game.dropPiece(1);
+  ASSERT_TRUE(placed == X);
+}
+
+TEST(PiezasTest, O_GoesSecond)
+{
+	Piezas game;
+
+  game.dropPiece(1);
+  Piece placed = game.dropPiece(1);
+  ASSERT_TRUE(placed == O);
+}
+
+TEST(PiezasTest, TurnOrderMaintained)
+{
+	Piezas game;
+
+  game.dropPiece(1);
+  game.dropPiece(1);
+  Piece placed = game.dropPiece(2);
+  ASSERT_TRUE(placed == X);
+}
+
 TEST(PiezasTest, testReset)
 {
 	Piezas game;
@@ -44,4 +71,32 @@ TEST(PiezasTest, testReset)
     }
   }
   ASSERT_FALSE(notBlank);
+}
+
+TEST(PiezasTest, dropPieceInNegativeColumn)
+{
+	Piezas game;
+
+  Piece placed = game.dropPiece(-3);
+  ASSERT_TRUE(placed == Invalid);
+}
+
+TEST(PiezasTest, dropPieceInColumnTooLarge)
+{
+	Piezas game;
+
+  Piece placed = game.dropPiece(7);
+  ASSERT_TRUE(placed == Invalid);
+}
+
+TEST(PiezasTest, dropPieceInFullColumn)
+{
+	Piezas game;
+
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  game.dropPiece(1);
+  Piece placed = game.dropPiece(1);
+  ASSERT_TRUE(placed == Blank);
 }
