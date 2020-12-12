@@ -63,8 +63,8 @@ TEST(PiezasTest, testReset)
   game.reset();
   //make sure all spaces are blank
   bool notBlank = false;
-  for(int column; column < BOARD_COLS; column++){
-    for(int row; row < BOARD_ROWS; row++){
+  for(int column = 0; column < BOARD_COLS; column++){
+    for(int row = 0; row < BOARD_ROWS; row++){
       if(game.pieceAt(row, column) != Blank){
         notBlank = true;
       }
