@@ -97,7 +97,7 @@ Piece Piezas::pieceAt(int row, int column)
  * line, it is a tie.
 **/
 Piece Piezas::gameState()
-{/*
+{
   for(int column = 0; column < BOARD_COLS; column++){
     for(int row = 0; row < BOARD_ROWS; row++){
       if(board[column][row] == Blank){
@@ -109,14 +109,74 @@ Piece Piezas::gameState()
 
   //Look for a winner
   int largestX = 0, largestO = 0;
-  for(int column; column < BOARD_COLS; column++){
-    int streak = 0;
-    int Piece = board[column][]
-    for(int row; row < BOARD_ROWS; row++){
 
-
-
-
+  //Check for Largest streak in Columns
+  for(int column = 0; column < BOARD_COLS; column++){
+    int bestStreak = 1, currentStreak = 1;
+    Piece currentPiece = board[column][0];
+    for(int row = 1; row < BOARD_ROWS; row++){
+      if(currentPiece == board[column][row]){
+        currentStreak++;
+      }
+      else{
+        if(currentPiece == X){
+          if(currentStreak > largestX){
+            largestX = currentStreak;
+          }
+        }
+        else{//Piece is O
+          if(currentStreak > largestO){
+            largestO = currentStreak;
+          }
+        }
+        currentStreak = 1;
+        currentPiece = board[column][row];
+      }
+    }
+    if(currentPiece == X){
+      if(currentStreak > largestX){
+        largestX = currentStreak;
+      }
+    }
+    else{//Piece is O
+      if(currentStreak > largestO){
+        largestO = currentStreak;
+      }
+    }
+  }
+  /////////////////////////////////////////////
+  //Check for Largest streak in Rows
+  for(int row = 0; row < BOARD_ROWS; row++){
+    int bestStreak = 1, currentStreak = 1;
+    Piece currentPiece = board[column][0];
+    for(int column = 1; column < BOARD_COLS; column++){
+      if(currentPiece == board[column][row]){
+        currentStreak++;
+      }
+      else{
+        if(currentPiece == X){
+          if(currentStreak > largestX){
+            largestX = currentStreak;
+          }
+        }
+        else{//Piece is O
+          if(currentStreak > largestO){
+            largestO = currentStreak;
+          }
+        }
+        currentStreak = 1;
+        currentPiece = board[column][row];
+      }
+    }
+    if(currentPiece == X){
+      if(currentStreak > largestX){
+        largestX = currentStreak;
+      }
+    }
+    else{//Piece is O
+      if(currentStreak > largestO){
+        largestO = currentStreak;
+      }
     }
   }
 
@@ -125,7 +185,7 @@ Piece Piezas::gameState()
   }
   else if(largestX < largestO){
     return O;
-  }*/
+  }
   //it is a tie
   return Blank;
 }
